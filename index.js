@@ -98,3 +98,160 @@ var isValidParentheses = (s) => {
 
 // var user = isValidParentheses("[({)]");
 // console.log(user);
+
+/* 
+Q5) Merge two sorted Arrays
+Merge the two lists in a one sorted list. 
+The list should be made by splicing together the nodes of the first two lists.
+*/
+var list1 = [1,2,4];
+var list2 = [14,6,3,4]
+let mergeTwoLists = (list1,list2) => {
+    // let appendedList = list1.concat(list2);
+    for (let k=0;k<list2.length ;k++){
+        list1.push(list2[k]);
+    }
+    return sortArray(list1);
+};
+// console.log(mergeTwoLists(list1,list2));
+
+
+//This below function sorts an Array
+function sortArray(Arr) {
+    let temp;
+    for (let i = 0; i < Arr.length; i++){
+        for (let j = i; j < Arr.length; j++){
+            if(Arr[i] > Arr[j]){
+                //Here we are swapping numbers  
+                temp = Arr[i];
+                Arr[i] = Arr[j];
+                Arr[j] = temp;
+            }
+        }
+    }
+    // console.log(Arr);
+    return Arr;
+}
+
+/* 
+Q6) Remove duplicates from an sorted Array 
+*/
+
+const removeDuplicates = (arr) => {
+    for (let i = 0; i < arr.length; i++) {
+        for(let j = arr.length ; j >= i+1; j--) {
+            if(arr[j] === arr[i]) {
+                arr.splice(i, 1);
+            }
+        }
+    }
+    return arr;
+}
+// console.log('removeDuplicates :',removeDuplicates([1,1,2]));
+
+/*
+Q7) Remove Specified Elements from a Array
+arr = list of array
+val = array of element that is to be removed
+*/
+
+const removeElement = (nums,val) => {
+    for (let i = nums.length-1 ; i >= 0 ; i--){
+        if(nums[i] === val){
+            nums.splice(i,1)
+        }
+    }
+    return nums;
+}
+// console.log(removeElement([3,2,2,3],2));
+
+/*
+Q8)Find the Index of the First Occurrence in a String
+Given two strings needle and haystack, 
+return the index of the first occurrence of needle in haystack, 
+or -1 if needle is not part of haystack.
+*/
+
+const strStr = (haystack, needle) => {
+    if(haystack.length < needle.length) return -1;
+    let MatchingStr = haystack.indexOf(needle);
+    return MatchingStr;
+};
+// console.log(strStr("leetcode","leeto"));
+
+/*
+Q9)  Search Insert Position
+Given a sorted array of distinct integers and a target value, 
+return the index if the target is found. If not, 
+return the index where it would be if it were inserted in order.
+*/
+
+const searchInsert = (nums, target) => {
+    if(nums.includes(target)) return nums.indexOf(target);
+    for (let i = 0; i < nums.length; i++){
+        if(target < nums[i]) return 0;
+        else if(nums[i] < target && nums[i+1] > target){
+            return i+1;
+        }
+        else if((nums.indexOf(nums[i]) + 1) === nums.length 
+        && target > nums[i]){
+            return nums.length;
+        }
+    };
+    return nums;
+};
+
+// console.log(searchInsert([1,2,3,4],3))
+
+/*
+Q10)  Length of Last Word
+Given a string s consisting of words and spaces, 
+return the length of the last word in the string.
+A word is a maximal substring consisting of non-space characters only.
+*/
+
+const lengthOfLastWord = (s) => {
+    let str = s.trim().split(' ');
+    return str[str.length-1].length;
+};
+// console.log(lengthOfLastWord("Hello World"));
+
+//Second Approach 
+const lengthOfLastWord2 =(str) =>{
+    let count = 0;
+    for (let i = str.length - 1; i >= 0;i--) {
+        if(str[i] !== " "){
+            for(let j = i;j >= 0; j--){ 
+                if(str[j] !== " "){
+                    count += 1;
+                }else return count;
+            }
+        }
+    }
+    return count;
+};
+
+// console.log(lengthOfLastWord2("   fly me   to   the moon  "));
+
+/*
+Q11)  Plus One
+Given a string s consisting of words and spaces, 
+return the length of the last word in the string.
+A word is a maximal substring consisting of non-space characters only.
+constraints
+1 <= digits.length <= 100
+0 <= digits[i] <= 9
+*/
+
+var plusOne = (digits) => {
+    let str = "";
+    for(let i = 0; i < digits.length  ; i++) {
+        if(digits[i] >= 0 && digits[i] <=9){
+            str += digits[i];
+        } else return false;
+    };
+    str = eval(str) + 1;
+    return str;
+};
+
+// console.log(plusOne([1,2,3,4,4]));
