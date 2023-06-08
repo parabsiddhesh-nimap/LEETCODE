@@ -244,14 +244,65 @@ constraints
 */
 
 var plusOne = (digits) => {
-    let str = "";
-    for(let i = 0; i < digits.length  ; i++) {
-        if(digits[i] >= 0 && digits[i] <=9){
-            str += digits[i];
-        } else return false;
-    };
-    str = eval(str) + 1;
-    return str;
+    let str = BigInt(digits.join('')) + 1n;
+    str = str.toString();
+
+    let arr = [];
+    for(let i = 0; i < str.length  ; i++) {
+            arr.push(str[i]);
+        }
+        return arr;
 };
 
-// console.log(plusOne([1,2,3,4,4]));
+// console.log(plusOne([6,1,4,5,3,9,0,1,9,5,1,8,6,7,0,5,5,4,3]));
+
+/*
+Q12)  Sqrt
+Given a non-negative integer x, return the square root of x rounded down to the nearest integer. 
+The returned integer should be non-negative as well.
+*/
+
+const sqrt = (x) => {
+    return Math.floor(x**0.5);
+};
+
+// console.log(sqrt(8));
+
+/* 
+Q13) Climbing Stairs
+You are climbing a staircase. It takes n steps to reach the top.
+Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+*/
+const climbStairs = function(n) {
+    const memo = [1,1,2];
+    for (let i = 3;i <= n; i++){
+        memo[i] = memo[i-1] + memo[i-2];
+        // console.log(memo[i]);
+    } 
+    return memo[n]
+};
+// console.log(climbStairs(4))
+
+/* 
+Q14) Fibonacci Number
+The Fibonacci numbers, commonly denoted F(n) form a sequence, called the Fibonacci sequence, 
+such that each number is the sum of the two preceding ones, starting from 0 and 1. That is,
+*/
+
+const fib = function(n) {
+    if(n<2) return n
+    return fib(n-1)+fib(n-2)
+};
+// console.log(fib(4));
+
+/* 
+Factorial of a Number
+*/
+const factorial = (n) => {
+    let num = 1;
+    for (let i = n;i > 0; i--){
+        num *= i;
+    }
+    return num;
+};
+// console.log(factorial(5))
