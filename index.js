@@ -305,4 +305,94 @@ const factorial = (n) => {
     }
     return num;
 };
-// console.log(factorial(5))
+// console.log(factorial(4))
+
+/* 
+Q15) Checking Sum Zero 
+[-5,-4,-3,-2,0,2,4,6,8,5]    
+output will contain 2 elements that sum to zero.
+*/
+//1st approach using 2 loop
+const checkSumZero = (arr) => {
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = i+1; j < arr.length; j++) {
+            if(arr[i] + arr[j] == 0) {
+                return [arr[i], arr[j]]
+            } 
+        }
+
+    }
+}
+// console.log(checkSumZero([-5,-4,-3,-2,0,2,4,6,8]))
+//2nd approach using 1 loop
+const checkSumZero1 = (arr) => {
+    let sum = 0;
+    let first = 0;
+    let last = arr.length - 1;
+
+    while(first < last) {
+        sum = arr[first] + arr[last];
+        if(sum === 0){
+            return [arr[first], arr[last]];
+        }
+        else if(sum > 0){
+            last--;
+        }
+        else {
+            first++;
+        } 
+    };
+}
+
+// console.log(checkSumZero1([-5,-4,-3,-2,0,2,4,5,6,8]))
+
+/* 
+Q16) 3Sum
+Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.
+*/
+
+const check3SumZero = (arr) => {
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = i+1; j < arr.length; j++) {
+            for (let k = j+1; k < arr.length; k++) {
+                if(arr[i] + arr[j] + arr[k] == 0) {
+                    return [arr[i], arr[j], arr[k]]
+                } 
+            }
+        }
+    }
+}
+
+// console.log(check3SumZero([-5,-4,-3,-2,0,2,4,6,8]))
+
+/*
+Anagram 
+'hello' => 'lleo' //not a anagram
+*/
+
+const checkAnagram = (str1, str2) => {
+    if(str1.length!== str2.length) return false;    
+    let map = {};
+    for (let i = 0; i < str1.length; i++) {
+        map[str1[i]] = (map[str1[i]] || 0) + 1;
+    }
+    for (let i = 0; i < str2.length; i++) {
+        if(!map[str2[i]]) return false;
+        map[str2[i]]--;
+    }
+    return true;
+    // return map;
+}; 
+
+// console.log(checkAnagram('siddhesh','siddhesh'))
+
+const countUniques = (arr) => {
+    let map = {};
+        for (let i = 0; i < arr.length; i++) {
+            if(!map[arr[i]]) map[arr[i]] = 1;
+            else map[arr[i]]++;
+        }
+        return map;
+}
+
+// console.log(countUniques([1,1,2,3,3]))
